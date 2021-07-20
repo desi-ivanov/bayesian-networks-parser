@@ -1,6 +1,9 @@
 # Bayesian Networks Parser
 A parser for bayesian networks in `.net` format. It generates Python code for instantiating BNs with discrete variables, compatible with an extension of BNs implemented in aima-python.
 
+Try it out here:
+https://evolveyourmind.github.io/bayesian-networks-parser/
+
 ## Usage
 Input:
 ```bash

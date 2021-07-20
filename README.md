@@ -8,7 +8,7 @@ tsc
 node dist/main.js < nets/asia.net > asiaNet.py
 ```
 Ouptut:
-```
+```python
 from BNetwork import BayesNet
 bn = BayesNet([
   ('smoke', '', ({
@@ -64,3 +64,6 @@ bn = BayesNet([
     ('no','no','no'): 0.9
   }))])
 ```
+
+# License
+MIT

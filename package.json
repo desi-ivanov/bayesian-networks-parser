@@ -1,0 +1,15 @@
+{
+  "name": "bayesian-networks-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js < nets/asia.net > asiaNet.py"
+  },
+  "author": "Desislav Ivanov",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^16.3.1"
+  }
+}

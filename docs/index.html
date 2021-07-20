@@ -1,0 +1,138 @@
+<html>
+  <style>
+    textarea {width: 400px; height: 150px;}
+  </style>
+  <body>
+    Network in .net format:<br></br>
+    <textarea id="net"></textarea><br></br>
+    <button id="clear">Clear</button><button id="go">Go</button><br></br>
+    Output:<br></br>
+    <textarea id="output"></textarea><br></br>
+    <script src="parser.js"></script>
+    <script>
+      window.clear.addEventListener("click", () => {
+        window.net.value = "";
+        window.output.value = "";
+      });
+      window.go.addEventListener("click", () => {
+        try {
+          window.output.value = convert(window.net.value);
+        } catch(err) {
+          window.output.value = String(err);
+        }
+      });
+      window.net.value = `net
+{
+	node_size = (130 55);
+}
+
+node dysp
+{
+	states = ("yes" "no" );
+	position = (792 -697);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node tub
+{
+	states = ("yes" "no" );
+	position = (471 -305);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node asia
+{
+	states = ("yes" "no" );
+	position = (428 -77);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node xray
+{
+	states = ("yes" "no" );
+	position = (414 -696);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node either
+{
+	states = ("yes" "no" );
+	position = (574 -473);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node lung
+{
+	states = ("yes" "no" );
+	position = (752 -290);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node bronc
+{
+	states = ("yes" "no" );
+	position = (1051 -302);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node smoke
+{
+	states = ("yes" "no" );
+	position = (894 -71);
+	ismapvariable = "false";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+potential ( dysp | bronc either )
+{
+	data = (((	0.9	0.1	)
+		(	0.8	0.2	))
+		((	0.7	0.3	)
+		(	0.1	0.9	)));
+}
+potential ( tub | asia )
+{
+	data = ((	0.05	0.95	)
+		(	0.01	0.99	));
+}
+potential ( asia | )
+{
+	data = (	0.01	0.99	);
+}
+potential ( xray | either )
+{
+	data = ((	0.98	0.02	)
+		(	0.05	0.95	));
+}
+potential ( either | lung tub )
+{
+	data = (((	1.0	0.0	)
+		(	1.0	0.0	))
+		((	1.0	0.0	)
+		(	0.0	1.0	)));
+}
+potential ( lung | smoke )
+{
+	data = ((	0.1	0.9	)
+		(	0.01	0.99	));
+}
+potential ( bronc | smoke )
+{
+	data = ((	0.6	0.4	)
+		(	0.3	0.7	));
+}
+potential ( smoke | )
+{
+	data = (	0.5	0.5	);
+}
+`
+    </script>
+  </body>
+</html>

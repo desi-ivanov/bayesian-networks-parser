@@ -1,4 +1,4 @@
-  
+
 type CPT = {
   key: string;
   parents: string[];
@@ -33,6 +33,7 @@ function parse(rawNet: string): Parsed {
         .split(/\s|\(|\)/)
         .filter(x => x.length > 0)
         .slice(1).filter(x => !["(", "|", " ", ")"].includes(x));
+      parents.reverse()
       const cptRaw = v.substring(v.indexOf("data ="), v.indexOf(";"));
       const cpt = cptRaw
         .replace(/\%(.|\t|\s)+?\n/g, "\n")
@@ -48,7 +49,7 @@ function parse(rawNet: string): Parsed {
         combinations: [key, ...parents].map(k => nodesMap[k].states)
           .reverse()
           .reduce((a, vs) => a.flatMap(x => vs.map(z => [...x, z])), [[]] as string[][])
-          .map(x => { x.reverse(); return x; })
+          .map((x) => { x.reverse(); return x })
       }
     });
   const someBroke = cpts.find(c => c.cpt.some(v => v === undefined

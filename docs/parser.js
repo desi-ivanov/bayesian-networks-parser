@@ -40,6 +40,7 @@ function parse(rawNet) {
             .split(/\s|\(|\)/)
             .filter(function (x) { return x.length > 0; })
             .slice(1).filter(function (x) { return !["(", "|", " ", ")"].includes(x); }), key = _a[0], parents = _a.slice(1);
+        parents.reverse();
         var cptRaw = v.substring(v.indexOf("data ="), v.indexOf(";"));
         var cpt = cptRaw
             .replace(/\%(.|\t|\s)+?\n/g, "\n")
